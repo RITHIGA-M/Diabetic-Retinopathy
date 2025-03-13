@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Diabetic Retinopathy - Report Summariser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon/favicon.png') }}">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-area header-transparent">
+            <div class="main-header header-sticky">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-15">
+                            <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                                <!-- Left Logo & Navigation -->
+                                <div class="left-content d-flex align-items-center">
+                                    <div class="logo mr-25">
+                                        <a href="#">
+                                            <img src="{{ url_for('static', filename='img/logo/logo.png') }}" alt="Logo">
+                                        </a>
+                                    </div>
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li><a href="/index">Home</a></li>
+                                                <li><a href="/summarise-section">Summarise</a></li>
+                                                <li><a href="/summaries">Saved Summaries</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <!-- Title -->
+                                <h1 class="text-center" style="position: absolute; left: 90%; transform: translateX(-50%); top: 100px;">
+                                    Report Summariser
+                                </h1>
+
+                                <!-- Right Buttons -->
+                                <div class="buttons">
+                                    <ul>
+                                        <li class="button-header">
+                                            <a href="/" class="header-btn2 border-btn2">
+                                                Log Out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <div class="row mt-5">
+            <!-- Search using PDF -->
+            <div class="col-md-7">
+                <div class="card p-4">
+                    <h3>Search using PDF</h3>
+                    <form action="/summarisePDF" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" class="form-control mb-2">
+                        <button type="submit" class="btn btn-primary">Upload & Summarise</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Search using Text -->
+            <div class="col-md-7">
+                <div class="card p-4">
+                    <h3>Search using Text</h3>
+                    <form action="/summarise" method="post">
+                        <input type="text" name="text" class="form-control mb-2" placeholder="Enter your text...">
+                        <button type="submit" class="btn btn-success">Summarise</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Result -->
+        {% if name %}
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <h4>Summary:</h4>
+                    <p>{{ name }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Diabetic Retinopathy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon/favicon.png') }}">
+
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Page Background */
+        body {
+            background-color: #f4f4f4; /* Light Gray */
+        }
+
+        /* Content Box Styling */
+        .container-box {
+            background-color: rgb(94, 243, 249);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-area header-transparent">
+            <div class="main-header header-sticky">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                                <div class="left-content d-flex align-items-center">
+                                    <div class="logo mr-30">
+                                        <a href="/"><img src="{{ url_for('static', filename='img/logo/logo.png') }}" alt=""></a>
+                                    </div>
+                                    <h1 style="position: absolute; left: 33%; top:20px">Patient Report</h1></br>
+                                </div>
+                                <div class="buttons">
+                                    <ul>
+                                        <li class="button-header" style="margin-right: 15px">
+                                            <a href="#" class="header-btn2 border-btn2">{{ name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row d-flex align-items-center justify-content-center">
+            <!-- Left: Patient Info -->
+            <div class="col-md-8">
+                <div class="container-box">
+                    <h3 class="text-center">{{ patient.get('name', 'Unknown') }}</h3>
+                    <ul class="list-group list-group-flush mt-3">
+                        <li class="list-group-item"><strong>Age:</strong> {{ patient.get('age', 'N/A') }}</li>
+                        <li class="list-group-item"><strong>Height:</strong> {{ patient.get('height', 'N/A') }} cm</li>
+                        <li class="list-group-item"><strong>Weight:</strong> {{ patient.get('weight', 'N/A') }} kg</li>
+                        <li class="list-group-item"><strong>Diabetic Retinopathy:</strong> {{ dr }}</li>
+                        <li class="list-group-item"><strong>Report:</strong> {{ patient.get('report', 'No Report Available') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

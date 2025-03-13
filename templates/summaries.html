@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Summaries</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body class="container mt-4">
+    <h2 class="text-center mb-4">Saved Summaries</h2>
+
+    <!-- Summary List -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Original Text</th>
+                    <th>Summary</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for summary in summaries %}
+                <tr>
+                    <td>{{ summary.original_text }}</td>
+                    <td>{{ summary.summary }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="/summarise" class="btn btn-primary">Go Back</a>
+    </div>
+
+    <!-- Download Button -->
+    <div class="text-center mt-2">
+        <a href="/download_summaries" class="btn btn-success">Download Summaries</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

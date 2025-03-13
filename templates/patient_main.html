@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diabetic Retinopathy Diagnosis</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='img/medical-background.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 5%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .tabs {
+            width: 50%;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .tabs.active {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+        #notification.error {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3 class="text-center mb-3">Diabetic Retinopathy Diagnosis</h3>
+        <form id="predictForm" action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="text" class="form-control mb-2" placeholder="Patient Name" name="name" required>
+            <input type="file" class="form-control mb-2" name="file" accept="image/*" required>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        <hr>
+        <div id="result" style="display: none;">
+            <h5>Prediction Result:</h5>
+            <p><strong>Diagnosis:</strong> <span id="prediction"></span></p>
+            <p><strong>Confidence:</strong> <span id="confidence"></span>%</p>
+            <a id="downloadLink" class="btn btn-success" style="display:none;" href="#">Download Report</a>
+        </div>
+    </div>
+
+    <div id="notification"></div>
+
+    <script>
+        const form = document.getElementById('predictForm');
+        form.onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('dr').innerText = data.prediction;
+                document.getElementById('confidence_score').innerText = data.confidence;
+                document.getElementById('downloadLink').style.display = 'block';
+                document.getElementById('downloadLink').href = `/download_report/${data.name}`;
+            } else {
+                alert('Prediction failed!');
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Diabetic Retinopathy</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <header>
+    <div class="header-area header-transparent">
+      <div class="main-header header-sticky">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                <div class="left-content d-flex align-items-center">
+                  <div class="logo mr-30">
+                    <a href="#  ">
+                      <img src="{{ url_for('static', filename='img/logo/logo.png') }}" alt="">
+                    </a>
+                  </div>
+                  <div class="main-menu d-none d-lg-block">
+                    <nav>
+                      <ul id="navigation">
+                        <li>
+                          <a href="#"></a>
+                        </li>
+                        <li>
+                          <a href="#"></a>
+                        </li>
+                        <li>
+                          <h1 style="position: absolute; top: -60px;">Summary</h1>
+                        </li>
+                        <li>
+                          <a href="#about"></a>
+                        </li>
+                        <li>
+                          <a href="#contact"></a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+    <!-- Summary List -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Original Document</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for summary in summaries %}
+                <tr>
+                    <td>{{ summary.original_Document }}</td>
+                    <td>{{ summary.summary }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="/summarise" class="btn btn-primary">Go Back</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
