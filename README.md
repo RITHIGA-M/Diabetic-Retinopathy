@@ -25,12 +25,12 @@ The three primary aspects of Diabetic Retinopathy (DR) are severity prediction, 
 # Novelty:
 Because there is no objective diagnostic technique for automated screening, almost 84 percent of patients are unaware they have diabetes. Detecting DR is now a time-consuming process that necessitates the evaluation of the retina by a skilled doctor. Furthermore, ophthalmologists' diagnoses of patients can be quite uneven, and our severity predictor allows an objective and speedy assessment of DR. Furthermore, we provide each client with a personalised set of yoga asanas as well as a personal posture trainer, all without the risk of Covid transmission.
 
-# Future scope 📈
+# Future scope:
 - Use a messaging tool to connect the patient with the doctor.
 - Diet Planner based on the patient's data.
 - Using IoT devices to keep track of patient fitness and food history stats.
 
-# Business Model 💹
+# Business Model:
 
 ## 1. Executive summary: 
 Our online programme predicts if a person will develop Diabetic Retinopathy and, if so, for how long, as well as proposing yoga asanas and connecting your reports with your selected doctor to help you naturally treat the disease.
